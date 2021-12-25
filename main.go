@@ -18,17 +18,24 @@ func init() {
 	flag.BoolVar(&conf.Debug, "d", false, "start with debug mode")
 	flag.BoolVar(&conf.Version, "-version", false, "print version info")
 	flag.BoolVar(&conf.Version, "v", false, "print version info")
-	flag.BoolVar(&conf.Update, "update", false, "update software")
-	flag.StringVar(&conf.ConfigFile, "-config", "data/config.yml", "config file")
-	flag.StringVar(&conf.ConfigFile, "cfg", "data/config.yml", "config file")
+	flag.BoolVar(&conf.OnlyGoogle, "g", false, "only specified Google Cloud IP Ranges")
+	flag.BoolVar(&conf.OnlyAmazon, "a", false, "only specified Amazon Cloud IP Ranges")
+	flag.BoolVar(&conf.OnlyIPv4, "4", false, "only IPv4")
+	flag.BoolVar(&conf.OnlyIPv4, "-ipv4 ", false, "only IPv4")
+	flag.BoolVar(&conf.OnlyIPv6, "6", false, "only IPv6")
+	flag.BoolVar(&conf.OnlyIPv6, "-ipv6 ", false, "only IPv6")
+	flag.StringVar(&conf.Service, "s", "", "specified service")
+	flag.StringVar(&conf.Service, "-service", "", "specified service")
+	flag.StringVar(&conf.Region, "r", "", "specified region")
+	flag.StringVar(&conf.Region, "-region", "", "specified region")
+	flag.StringVar(&conf.Scope, "-scope", "", "network border group")
+	flag.BoolVar(&conf.WriteToFile, "w", false, "write to the file")
+	flag.BoolVar(&conf.WriteToFile, "-write", false, "write to the file")
 	flag.Parse()
 }
 
 func Init() bool {
 	client.InitLog()
-	client.InitConfig()
-	client.InitCron()
-	client.InitCache()
 	return true
 }
 
@@ -38,7 +45,7 @@ func main() {
 		return
 	}
 	if conf.Version {
-		fmt.Printf("Built At: %s\nGo Version: %s\nVersion: %s\n", conf.BuiltAt, conf.GoVersion, conf.VERSION)
+		fmt.Printf("IPs Version: %s\n", conf.VERSION)
 		return
 	}
 	if !Init() {
@@ -48,4 +55,5 @@ func main() {
 		log.Info("Set Debug Mode")
 	}
 	log.Info("Starting Client")
+	client.RunClient()
 }

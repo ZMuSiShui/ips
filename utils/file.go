@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	log "github.com/sirupsen/logrus"
+	"gopkg.in/yaml.v3"
 )
 
 // 确定文件是否存在
@@ -39,18 +40,32 @@ func CreatNestedFile(path string) (*os.File, error) {
 }
 
 // 将结构写入 JSON 文件
-func WriteToJson(src string, conf interface{}) bool {
-	data, err := json.MarshalIndent(conf, "", "  ")
+func WriteToJson(src string, object interface{}) error {
+	data, err := json.MarshalIndent(object, "", "  ")
 	if err != nil {
-		log.Errorf("failed convert Conf to []byte:%s", err.Error())
-		return false
+		log.Errorf("无法将 Object 转换为 []byte: %v", err.Error())
+		return err
 	}
 	err = ioutil.WriteFile(src, data, 0777)
 	if err != nil {
-		log.Errorf("failed to write json file:%s", err.Error())
-		return false
+		log.Errorf("无法写入 JSON 文件: %v", err.Error())
+		return err
 	}
-	return true
+	return err
+}
+
+// 将结构写入 Yaml 文件
+func WriteToYaml(src string, object interface{}) error {
+	data, err := yaml.Marshal(object)
+	if err != nil {
+		log.Errorf("无法将 Object 转换为 []byte: %v", err.Error())
+		return err
+	}
+	if err := ioutil.WriteFile(src, data, 0777); err != nil {
+		log.Errorf("无法写入 Yaml 文件: %v", err.Error())
+		return err
+	}
+	return nil
 }
 
 func ParsePath(path string) string {
