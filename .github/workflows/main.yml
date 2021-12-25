@@ -25,7 +25,9 @@ jobs:
 
       - name: 'Working'
         timeout-minutes: 500
-        run: go run main.go -w
+        run: |
+          rm -rf ./ipranges
+          go run main.go -w
 
       - name: Commit files
         run: |
