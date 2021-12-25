@@ -22,7 +22,15 @@ jobs:
 
       - name: 'Install dependencies'
         run: go mod tidy
-
+        
+      - name: Delete old files
+        run: |
+          rm -rf ipranges
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Delete old IPRanges files" -a
+          
       - name: 'Working'
         timeout-minutes: 500
         run: |
