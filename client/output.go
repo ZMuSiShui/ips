@@ -63,9 +63,9 @@ func output(input conf.IPRangesDoc, google bool) bool {
 		if !conf.OnlyIPv6 {
 			for _, p := range input.Prefixes {
 				if google {
-					path := "data/" + "google/" + "googleService/" + p.Service + "-ipv4"
-					pathServiceScope := "data/" + "google/" + "googleServiceScope/" + p.Service + "/" + p.Scope + "-ipv4"
-					pathScope := "data/" + "google/" + "googleScope/" + p.Scope + "-ipv4"
+					path := "ipranges/" + "google/" + "googleService/" + p.Service + "-ipv4"
+					pathServiceScope := "ipranges/" + "google/" + "googleServiceScope/" + p.Service + "/" + p.Scope + "-ipv4"
+					pathScope := "ipranges/" + "google/" + "googleScope/" + p.Scope + "-ipv4"
 					if p.Ipv4Prefix != "" {
 						if !write(pathServiceScope, p.Ipv4Prefix) {
 							return false
@@ -78,9 +78,9 @@ func output(input conf.IPRangesDoc, google bool) bool {
 						}
 					}
 				} else {
-					path := "data/" + "amazon/" + "amazonService/" + p.Service + "-ipv4"
-					pathServiceRegion := "data/" + "amazon/" + "amazonServiceRegion/" + p.Service + "/" + p.Region + "-ipv4"
-					pathRegion := "data/" + "amazon/" + "amazonRegion/" + p.Region + "-ipv4"
+					path := "ipranges/" + "amazon/" + "amazonService/" + p.Service + "-ipv4"
+					pathServiceRegion := "ipranges/" + "amazon/" + "amazonServiceRegion/" + p.Service + "/" + p.Region + "-ipv4"
+					pathRegion := "ipranges/" + "amazon/" + "amazonRegion/" + p.Region + "-ipv4"
 					if p.Ip_prefix != "" {
 						if !write(pathServiceRegion, p.Ip_prefix) {
 							return false
@@ -98,9 +98,9 @@ func output(input conf.IPRangesDoc, google bool) bool {
 		if !conf.OnlyIPv4 {
 			if google {
 				for _, p := range input.Prefixes {
-					path := "data/" + "google/" + "googleService/" + p.Service + "-ipv6"
-					pathServiceScope := "data/" + "google/" + "googleServiceScope/" + p.Service + "/" + p.Scope + "-ipv6"
-					pathScope := "data/" + "google/" + "googleScope/" + p.Scope + "-ipv6"
+					path := "ipranges/" + "google/" + "googleService/" + p.Service + "-ipv6"
+					pathServiceScope := "ipranges/" + "google/" + "googleServiceScope/" + p.Service + "/" + p.Scope + "-ipv6"
+					pathScope := "ipranges/" + "google/" + "googleScope/" + p.Scope + "-ipv6"
 					if p.Ipv6Prefix != "" {
 						if !write(pathServiceScope, p.Ipv6Prefix) {
 							return false
@@ -117,9 +117,9 @@ func output(input conf.IPRangesDoc, google bool) bool {
 			} else {
 				for _, p := range input.Ipv6_prefixes {
 
-					path := "data/" + "amazon/" + "amazonService/" + p.Service + "-ipv6"
-					pathServiceRegion := "data/" + "amazon/" + "amazonServiceRegion/" + p.Service + "/" + p.Region + "-ipv6"
-					pathRegion := "data/" + "amazon/" + "amazonRegion/" + p.Region + "-ipv6"
+					path := "ipranges/" + "amazon/" + "amazonService/" + p.Service + "-ipv6"
+					pathServiceRegion := "ipranges/" + "amazon/" + "amazonServiceRegion/" + p.Service + "/" + p.Region + "-ipv6"
+					pathRegion := "ipranges/" + "amazon/" + "amazonRegion/" + p.Region + "-ipv6"
 					if p.Ipv6_prefix != "" {
 						if !write(pathServiceRegion, p.Ipv6_prefix) {
 							return false
