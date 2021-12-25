@@ -26,14 +26,12 @@ jobs:
       - name: 'Working'
         timeout-minutes: 500
         run: |
-          rm -rf ./ipranges
           go run main.go -w
 
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git status -s
           git add -A
           git commit -m "✅ add a IPRanges" -a
       - name: 'Push changes'
