@@ -19,7 +19,6 @@ Application Options:
         --scope           network border group(default all)
   -4,   --ipv4            only IPv4(default all)
   -6,   --ipv6            only IPv6(default all)
-  -e,   --encode          output encoding (json, yaml, text)
   -w,   --write           Please enter a folder name to write to file(default ipranges)
   -h,   --help            help message
   -d,   --debug           start with debug mode
