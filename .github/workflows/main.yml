@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: 0 0 * * *
 jobs:
-  Download-Image:
+  Get-IPs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Set up Go'
