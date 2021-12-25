@@ -33,7 +33,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git status -s
           git add -A
-          git commit -m "✅ add a BingImage" -a
+          git commit -m "✅ add a IPRanges" -a
       - name: 'Push changes'
         uses: ad-m/github-push-action@master
         with:
