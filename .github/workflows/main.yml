@@ -34,10 +34,10 @@ jobs:
       
       - name: Upload firmware directory
         uses: actions/upload-artifact@main
-        if: steps.organize.outputs.status == 'success' && !cancelled()
+        if: (!cancelled())
         with:
           name: IPRanges
-          path: ipranges/
+          path: ipranges/*
 
       - name: Generate release tag
         id: tag
