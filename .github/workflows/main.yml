@@ -30,7 +30,9 @@ jobs:
 
       - name: Check space usage
         if: (!cancelled())
-        run: df -hT
+        run: |
+          df -hT
+          tar -zcvf ipranges.tar.gz ./ipranges
       
       - name: Upload firmware directory
         uses: actions/upload-artifact@main
@@ -55,4 +57,4 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ipranges/*
+          files: ipranges.tar.gz
